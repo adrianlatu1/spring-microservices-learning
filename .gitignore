@@ -1,0 +1,41 @@
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.swp
+*.swo
+
+# Build
+target/
+build/
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Dependencies
+.gradle/
+node_modules/
+
+# Environment
+.env
+.env.local
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Docker
+docker-compose.override.yml
+
+# Runtime
+.classpath
+.project
+.settings/
