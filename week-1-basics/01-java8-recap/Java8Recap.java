@@ -1,6 +1,7 @@
 package com.learning.java8;
 
 import java.util.*;
+import java.util.function.BiFunction;
 import java.util.stream.*;
 
 /**
@@ -36,6 +37,7 @@ public class Java8Recap {
         System.out.println("=== Exercițiu 1.1: Numere pare ===");
         // Filtrează și afișează numerele pare
         // TODO: completează
+        System.out.println("=== Exercițiu 1.1: Numere pare ===" + numbers.stream().filter(x -> x%2 == 0).collect(Collectors.toList()));
     }
 
     /**
@@ -50,7 +52,7 @@ public class Java8Recap {
         
         System.out.println("=== Exercițiu 1.2: Lungimea cuvintelor ===");
         // Mapează fiecare cuvânt la lungimea sa
-        // TODO: completează
+        System.out.println("Lungimea cuvintelor din lista: " + words.stream().map(str -> str.length()).collect(Collectors.toList()));
     }
 
     /**
@@ -60,14 +62,20 @@ public class Java8Recap {
      * 
      * Exemplu: (a, b) -> a + b
      */
+
+
     public static void exercise1_3() {
         System.out.println("=== Exercițiu 1.3: Adunare cu lambda ===");
         
         // Creează un BiFunction pentru adunare
-        // TODO: completează
+        BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;
         
         // Testează: 5 + 3 = 8
-        // TODO: completează
+        int result = add.apply(5, 3);
+        System.out.println("5 + 3 = " + result);
+
+        BiFunction<Integer, Integer, Integer> subtract = (a,b) -> a-b;
+        System.out.println("5-3 = " + subtract.apply(5,3));
     }
 
     // ============================================
@@ -89,9 +97,10 @@ public class Java8Recap {
         List<Integer> numbers = Arrays.asList(1, 3, 5, 7, 9, 2, 4, 6, 8, 10);
         
         System.out.println("=== Exercițiu 2.1: Filter + Map + Collect ===");
-        
+
         // TODO: completează
         // Rezultat așteptat: [14, 18, 22] (7*2, 9*2, 10*2 — doar > 5)
+        System.out.println(" Numerele filtrare si mapate = " + numbers.stream().filter(x -> x >5).map((x -> x*2)).collect(Collectors.toList()));
     }
 
     /**
@@ -110,9 +119,11 @@ public class Java8Recap {
         
         // TODO: calculează suma cu reduce
         // Rezultat așteptat: 15
+        System.out.println("Suma numerelor = " + numbers.stream().reduce(0, (a,b) -> a+b));
         
         // TODO: calculează produsul cu reduce
         // Rezultat așteptat: 120
+        System.out.println("Produsul numerelor = " + numbers.stream().reduce(1, (a,b) -> a*b));
     }
 
     /**
@@ -135,6 +146,7 @@ public class Java8Recap {
         
         // TODO: folosește flatMap pentru a combina listele
         // Rezultat așteptat: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        System.out.println("Flatmap pentru aplatizarea listelor = " + nestedLists.stream().flatMap(list -> list.stream()).collect(Collectors.toList()));
     }
 
     /**
@@ -152,12 +164,15 @@ public class Java8Recap {
         System.out.println("=== Exercițiu 2.4: Operații Terminale ===");
         
         // TODO: count — câte numere > 5?
+        System.out.println(" Cate numere mai mari decat 5: " + numbers.stream().filter(x -> x > 5).count());
         
         // TODO: min și max
         
         // TODO: anyMatch — există vreun negativ?
+        System.out.println("Exista vreun match x > 7? " + numbers.stream().anyMatch(x -> x < 7));
         
         // TODO: allMatch — sunt toate > 0?
+        System.out.println("Toate sunt > 0 ? " + numbers.stream().allMatch(x -> x > 0));
     }
 
     // ============================================
@@ -180,8 +195,10 @@ public class Java8Recap {
         System.out.println("=== Exercițiu 3.1: Optional — Baze ===");
         
         // TODO: creează un Optional cu valoare "Hello"
+        Optional<String> valoareOpt = Optional.of("Hello");
         
         // TODO: verifică dacă e prezent și afișează
+        System.out.println(" Este prezent" + valoareOpt.isPresent());
         
         // TODO: creează un Optional gol
         
@@ -201,6 +218,7 @@ public class Java8Recap {
         
         // TODO: folosește map() pentru a transforma în UPPERCASE
         // Rezultat așteptat: Optional[ADRIAN]
+        System.out.println("Optional to uppercase = " + name.stream().map(String::toUpperCase));
         
         // TODO: folosește map() pentru a obține lungimea
         // Rezultat așteptat: Optional[6]
@@ -220,6 +238,7 @@ public class Java8Recap {
         
         // TODO: folosește stream().filter().findFirst() pentru a găsi primul par
         // Rezultat așteptat: Optional[8]
+        System.out.println("Primul număr par găsit = " + numbers.stream().filter(x -> x % 2 ==0).findFirst().orElse(-1));
         
         // TODO: dacă nu găsești, afișează un mesaj default
     }
